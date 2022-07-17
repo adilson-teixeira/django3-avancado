@@ -1,0 +1,51 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada</title>
+    {% bootstrap_css %}
+    <style>
+        .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        }
+        .box {
+        width: 300px;
+        height: 300px;
+        }
+        body {
+        margin: 0px;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>
+                        Oops!</h1>
+                    <h2>
+                        404 Página não encontrada</h2>
+                    <div class="error-details">
+                        Desculpe, ocorreu um erro, a página solicitada não foi encontrada!
+                    </div>
+                    <div class="error-actions">
+                        <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Página Inicial </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% bootstrap_javascript jquery='ful' %}
+</body>
+</html>
