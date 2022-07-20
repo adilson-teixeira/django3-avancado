@@ -54,6 +54,17 @@
         {% else %}
         <h2>Ainda não existem produtos cadastrados.</h2>
         {% endif %}
+
+        {% if posts %}
+        {% for post in posts %}
+        <h2>{{ post.title}}</h2>
+        <span class="badge badge-primary">{{ post.autor.first_name}} {{ post.autor.last_name}}</span>
+        <p>{{ post.texto }}</p>
+        {% endfor %}
+
+        {% else %}
+        <h2>Ainda não existem posts para serem exibidos.</h2>
+        {% endif %}
     </div>
 
 {% bootstrap_javascript jquery='ful' %}

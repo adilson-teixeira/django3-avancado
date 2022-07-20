@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from .forms import ProdutoModelForm # retirado ContatoForm,
-from .models import Produto
+from .models import Produto, Post
 from django.shortcuts import redirect #usado para redirecionar usuário anonimo.
 from django.views.generic import TemplateView
 
@@ -14,6 +14,7 @@ class IndexView(TemplateView):  #class BasedViews
         context = super(IndexView, self).get_context_data(**kwargs)
         """recupera o contexto caso contenha dados"""
         context['produtos'] = Produto.objects.all()
+        context['posts'] = Post.objects.all()
         #context['servicos'] = Servico.objects.all() <= quantos tiver no model/ bd
         #context['servicos'] = Servico.objects.order_by('?').all() <= exibição aleatória ? = qualquer caractere
         return context
