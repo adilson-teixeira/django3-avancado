@@ -12,7 +12,10 @@ class IndexView(TemplateView):  #class BasedViews
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        """recupera o contexto caso contenha dados"""
         context['produtos'] = Produto.objects.all()
+        #context['servicos'] = Servico.objects.all() <= quantos tiver no model/ bd
+        #context['servicos'] = Servico.objects.order_by('?').all() <= exibição aleatória ? = qualquer caractere
         return context
 
 
