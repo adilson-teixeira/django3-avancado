@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 #from stdimage.models import StdImageField
 
 #SIGNALS
@@ -29,3 +30,13 @@ def produto_pre_save(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.nome)
 
 signals.pre_save.connect(produto_pre_save, sender=Produto)
+
+
+
+class Post(models.Model):
+    autor = models.ForeignKey(get_user_model(), verbose_name='Autor', on_delete=models.CASCADE)
+    titulo = models.CharField('Título', max_length=100)
+    texto = models.TextField('Texto', max_length=400)
+
+    def __str__(self):
+        return self.titulo
