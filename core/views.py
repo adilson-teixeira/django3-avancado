@@ -15,7 +15,10 @@ class CarIndexView(LoginRequiredMixin, ListView):
     templante_name = 'carindex.html'
     queryset = Carro.objects.all() 
     #poderia ser usado filtros de buscas ou variável se vier da página 
-    context_object_name = 'carros'
+    #context_object_name = 'carros' // usando paginação o contexto é criado automaticamente.
+    paginate_by = 4
+    ordering = 'id' # pode ser usado 'nome'(crescente) ou '-nome' (decrescente)
+    """ ordem decrescente '-id' """
 
 
 
