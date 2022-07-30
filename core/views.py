@@ -7,9 +7,10 @@ from django.shortcuts import redirect #usado para redirecionar usuário anonimo.
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView #CRUD
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+"""maneira mais simples para requerer login em classbasedviews LoginRequiredMixin"""
 
-
-class CarIndexView(ListView):
+class CarIndexView(LoginRequiredMixin, ListView):
     models = Carro
     templante_name = 'carindex.html'
     queryset = Carro.objects.all() 
@@ -18,7 +19,7 @@ class CarIndexView(ListView):
 
 
 
-class CreateCarroView(CreateView):
+class CreateCarroView(LoginRequiredMixin, CreateView):
     model = Carro
     template_name = 'carro_form.html'
     fields = ['nome', 'preco']
@@ -26,7 +27,7 @@ class CreateCarroView(CreateView):
     # url para quando o produto é salvo com sucesso. 
 
 
-class UpdateCarroView(UpdateView):
+class UpdateCarroView(LoginRequiredMixin,UpdateView):
     model = Carro
     template_name = 'carro_form.html'
     fields = ['nome', 'preco']
@@ -34,12 +35,13 @@ class UpdateCarroView(UpdateView):
 
 
 
-class DeleteCarroView(DeleteView):
+class DeleteCarroView(LoginRequiredMixin, DeleteView):
     model = Carro
     template_name = 'carro_del.html'
     success_url = reverse_lazy('carindex')
 
 class IndexView(TemplateView):  #class BasedViews
+    """A definição de redirecionamento do login está sendo feito no settings.py"""
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
