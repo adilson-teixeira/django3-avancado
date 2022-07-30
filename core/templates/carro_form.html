@@ -1,0 +1,16 @@
+{% extends 'base2.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <h1>Carros</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <!-- Forms para cadastro e atualização-->
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-warning">
+                    <a href="{% url 'carindex' %}">Cancelar</a>
+                </button>
+            {% endbuttons %}
+    </form>
+{% endblock %}

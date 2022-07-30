@@ -1,0 +1,13 @@
+{% extends 'base2.html' %}
+{% load bootstrap4 %}
+{% block content  %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Tem certeza que deseja Excluir o Carro "{{ object }}"?</p>
+        {% buttons %}
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a class="btn btn-warning" href="{% url 'carindex' %}">Cancelar</a>
+            </button>
+        {% endbuttons %}
+    </form>
+{% endblock %}

@@ -1,10 +1,14 @@
 from urllib import request
 from django.contrib import admin
-from .models import Produto, Post
+from .models import Produto, Post, Carro
 
 admin.site.site_header ='Página de Administração - Django 3'
 admin.site.site_title = 'Página de Administração - Django 3 -Avançado.'
 admin.site.index_title = 'Avançando nos conhecimentos do Django'
+
+@admin.register(Carro)
+class CarroAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'preco')
 
 
 @admin.register(Produto)

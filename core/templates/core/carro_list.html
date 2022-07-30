@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="row">
+        <h1>Carros</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for carro in carros %}
+                    <tr>
+                        <td>{{ carro.id }}</td>
+                        <td>{{ carro.nome }}</td>
+                        <td>R$ {{ carro.preco|intcomma }}</td>
+                        <!-- preco|intcoma = Função do humaniza formata a vírgula de acordo com a língua -->
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'upd_carro' carro.pk %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'del_carro' carro.pk %}">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,11 +1,43 @@
-from multiprocessing import context
+#from multiprocessing import context # verificar se não está sendo usado
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from .forms import ProdutoModelForm # retirado ContatoForm,
-from .models import Produto, Post
+from .forms import ProdutoModelForm, CarroModelForm # retirado ContatoForm,
+from .models import Produto, Post, Carro
 from django.shortcuts import redirect #usado para redirecionar usuário anonimo.
-from django.views.generic import TemplateView
+from django.views.generic import ListView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView #CRUD
+from django.urls import reverse_lazy
 
+
+class CarIndexView(ListView):
+    models = Carro
+    templante_name = 'carindex.html'
+    queryset = Carro.objects.all() 
+    #poderia ser usado filtros de buscas ou variável se vier da página 
+    context_object_name = 'carros'
+
+
+
+class CreateCarroView(CreateView):
+    model = Carro
+    template_name = 'carro_form.html'
+    fields = ['nome', 'preco']
+    success_url = reverse_lazy('carindex')
+    # url para quando o produto é salvo com sucesso. 
+
+
+class UpdateCarroView(UpdateView):
+    model = Carro
+    template_name = 'carro_form.html'
+    fields = ['nome', 'preco']
+    success_url = reverse_lazy('carindex')
+
+
+
+class DeleteCarroView(DeleteView):
+    model = Carro
+    template_name = 'carro_del.html'
+    success_url = reverse_lazy('carindex')
 
 class IndexView(TemplateView):  #class BasedViews
     template_name = 'index.html'

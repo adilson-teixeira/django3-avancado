@@ -1,6 +1,6 @@
 from django import forms
 #from django.core.mail.message import EmailMessage
-from .models import Produto
+from .models import Produto, Carro
 
 """class ContatoForm(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
@@ -29,3 +29,10 @@ class ProdutoModelForm(forms.ModelForm):
     class Meta:
         model = Produto
         fields = ['nome', 'preco', 'estoque'] #retirado 'imagem'
+
+
+class CarroModelForm(forms.ModelForm):
+
+    class Meta:
+        model = Carro
+        fields = '__all__'

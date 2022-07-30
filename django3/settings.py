@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize', # ajuda na configuração de pontuação/formatação
     'core',
     'bootstrap4',
 ]
@@ -137,5 +138,3 @@ LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
 django_on_heroku.settings(locals())
-
-
